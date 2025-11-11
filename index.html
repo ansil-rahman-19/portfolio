@@ -711,7 +711,7 @@
                                         <div class="text-body-2 dot-before subtitle">Contact Form</div>
                                         <h1 class="fw-medium heading">Contact For Work</h1>
                                         <form action="https://formspree.io/f/xovyqnlk" method="POST" class="form-contact" id="form-contact">
-                                            <input type="hidden" name="_next" value="https://ansil-rahman-19.github.io/portfolio/thank-you.html">
+                                            
                                             <fieldset class="fiel-mail">
                                                 <label class="text-xs-2">Your Email</label>
                                                 <input type="email" name="mail" id="mail" placeholder="Enter the Email" value="" aria-required="true" required>
@@ -850,11 +850,33 @@
     <script src="asset/js/lightbox.min.js"></script>
     <script src="asset/js/main.js"></script>
     <!-- /Javascript -->
+    <script>
+document.getElementById("form-contact").addEventListener("submit", async function(event) {
+  event.preventDefault(); // prevent normal form submit
+
+  const form = event.target;
+  const data = new FormData(form);
+  
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    // ✅ redirect manually after success
+    window.location.href = "thank-you.html";
+  } else {
+    alert("There was a problem submitting your form. Please try again.");
+  }
+});
+</script>
 
 </body>
 
 
 </html>
+
 
 
 
